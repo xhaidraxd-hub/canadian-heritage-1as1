@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian Heritage: Treasures of the Nation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        :root {
+            --primary: #C8102E; /* Canadian red */
+            --secondary: #FFFFFF; /* White */
+            --accent: #9D2235; /* Dark red */
+            --light: #F8F8F8; /* Light white */
+            --dark: #333333; /* Dark gray */
+            --green: #2E8B57;
+            --brown: #8B4513;
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark red theme */
+        [data-theme="dark-red"] {
+            --primary: #8B0000; /* Dark red */
+            --secondary: #FFFFFF; /* White */
+            --accent: #660000; /* Darker red */
+            --light: #F5F5F5; /* Light white */
+            --dark: #222222; /* Very dark gray */
+            --green: #2E8B57;
+            --brown: #8B4513;
+        }
+
+        /* Light red theme */
+        [data-theme="light-red"] {
+            --primary: #E63946; /* Light red */
+            --secondary: #FFFFFF; /* White */
+            --accent: #D90429; /* Medium red */
+            --light: #FFF5F5; /* White with red tint */
+            --dark: #444444; /* Medium gray */
+            --green: #2E8B57;
+            --brown: #8B4513;
+        }
+
+        /* Classic red theme */
+        [data-theme="classic-red"] {
+            --primary: #B22234; /* Classic American red */
+            --secondary: #FFFFFF; /* White */
+            --accent: #8B1A1A; /* Dark red */
+            --light: #F9F9F9; /* Light white */
+            --dark: #2F2F2F; /* Dark gray */
+            --green: #2E8B57;
+            --brown: #8B4513;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Enhanced Navigation Bar */
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(0, 0, 0, 0.98);
+        }
+        
+        .nav-container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 1rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1503614474182-8e6b9b4a4715?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 0 1rem;
+        }
+        
+        header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(200, 16, 46, 0.4), rgba(157, 34, 53, 0.4), rgba(255, 255, 255, 0.2));
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            font-weight: 900;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1.5s ease;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            font-weight: 300;
+            line-height: 1.8;
+            animation: fadeInUp 1.5s ease 0.5s both;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 2s ease 1s both;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(200, 16, 46, 0.4);
+        }
+        
+        .cta-button.secondary {
+            background: linear-gradient(135deg, var(--secondary), #e0e0e0);
+            color: var(--primary);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(200, 16, 46, 0.6);
+        }
+        
+        .cta-button.secondary:hover {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 10px 25px rgba(200, 16, 46, 0.6);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            position: relative;
+            font-weight: 800;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--dark);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 5rem;
+            padding: 4rem;
+            background: linear-gradient(135deg, white, #f9f9f9);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intro:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+        }
+        
+        .intro p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+        
+        .intro-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            gap: 2rem;
+        }
+        
+        .intro-stat {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .intro-stat .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            line-height: 1;
+        }
+        
+        .intro-stat .text {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+        
+        /* Canada Introduction Section */
+        .canada-intro {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 5rem;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .canada-flag {
+            flex: 0 0 300px;
+            text-align: center;
+        }
+        
+        .canada-flag img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .canada-info {
+            flex: 1;
+        }
+        
+        .canada-info h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        
+        .canada-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Heritage Sections with Images */
+        .heritage-section {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 6rem 1rem;
+            margin: 6rem 0;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .heritage-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .heritage-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .heritage-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .heritage-item:hover {
+            transform: translateY(-15px);
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .heritage-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .heritage-item i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .heritage-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .heritage-item p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+        
+        /* Specific Heritage Sections (Backgrounds left as is) */
+        .natural-heritage {
+            background: linear-gradient(rgba(0, 100, 0, 0.8), rgba(0, 80, 0, 0.8)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .architectural-heritage {
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(101, 67, 33, 0.8)), url('https://images.unsplash.com/photo-1543349689-9a4d426bee8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .art-heritage {
+            background: linear-gradient(rgba(165, 42, 42, 0.8), rgba(120, 30, 30, 0.8)), url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .indigenous-heritage {
+            background: linear-gradient(rgba(160, 82, 45, 0.8), rgba(120, 60, 30, 0.8)), url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .sports-heritage {
+            background: linear-gradient(rgba(30, 144, 255, 0.8), rgba(25, 100, 180, 0.8)), url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .science-heritage {
+            background: linear-gradient(rgba(70, 130, 180, 0.8), rgba(50, 100, 150, 0.8)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .linguistic-heritage {
+            background: linear-gradient(rgba(106, 90, 205, 0.8), rgba(80, 65, 160, 0.8)), url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .culinary-heritage {
+            background: linear-gradient(rgba(205, 92, 92, 0.8), rgba(160, 70, 70, 0.8)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .music-heritage {
+            background: linear-gradient(rgba(200, 16, 46, 0.9), rgba(157, 34, 53, 0.9)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        /* Enhanced Timeline Section */
+        .timeline-section {
+            background: linear-gradient(135deg, var(--light), #eaeaea);
+            padding: 6rem 0;
+            margin: 6rem 0;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.3)"/></svg>');
+            background-size: cover;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 4rem auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent), var(--secondary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: right;
+        }
+        
+        .timeline-content {
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            transform: rotate(45deg);
+            top: 20px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content:after {
+            left: -10px;
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        
+        .timeline-content .year {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary);
+            border: 5px solid var(--accent);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 3px white;
+        }
+        
+        .timeline-item:nth-child(odd):after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even):after {
+            left: -12px;
+        }
+        
+        /* Simplified Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #222);
+            color: white;
+            padding: 3rem 1rem;
+            margin-top: 6rem;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(200, 16, 46, 0.4);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            transform: translateY(-7px);
+            box-shadow: 0 8px 25px rgba(200, 16, 46, 0.6);
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.08);
+            padding: 0.35rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.08);
+            padding: 0.35rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 0.3rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Theme Dropdown */
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            padding: 0.5rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 150px;
+            margin-top: 0.5rem;
+            z-index: 1001;
+        }
+
+        .theme-dropdown.active {
+            display: flex;
+        }
+
+        .theme-option {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .theme-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Scroll Progress Indicator */
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            z-index: 1001;
+            transition: width 0.2s ease;
+        }
+
+        /* Loading Indicator */
+        #loadingIndicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            z-index: 9999;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* RTL Support */
+        body[dir="rtl"] {
+            text-align: right;
+        }
+        
+        body[dir="rtl"] .nav-links a:after {
+            left: auto;
+            right: 0;
+        }
+        
+        body[dir="rtl"] .dropdown-content {
+            left: auto;
+            right: 0;
+        }
+        
+        body[dir="rtl"] .timeline:before {
+            left: auto;
+            right: 50%;
+            margin-left: 0;
+            margin-right: -3px;
+        }
+        
+        body[dir="rtl"] .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        body[dir="rtl"] .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: right;
+        }
+        
+        body[dir="rtl"] .timeline-item:nth-child(even) {
+            left: 0;
+            text-align: left;
+            padding-left: 70px;
+            padding-right: 25px;
+        }
+        
+        body[dir="rtl"] .timeline-item:nth-child(even) {
+            left: 0;
+            text-align: right;
+            padding-left: 25px;
+            padding-right: 70px;
+        }
+        
+        body[dir="rtl"] .timeline-item:nth-child(odd) {
+            padding-left: 25px;
+            padding-right: 70px;
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary);
+            border: 5px solid var(--accent);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 3px white;
+        }
+        
+        .timeline-item:nth-child(odd):after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even):after {
+            left: -12px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 2rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.8rem 0;
+                text-align: center;
+            }
+            
+            .dropdown-content {
+                position: static;
+                background: transparent;
+                box-shadow: none;
+                display: block;
+                margin-top: 0;
+            }
+            
+            .dropdown-content a {
+                padding-left: 3rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .timeline:before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 50%;
+                text-align: right;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+                text-align: left;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            body[dir="rtl"] .timeline-item:nth-child(even) {
+                left: 0;
+                text-align: right;
+                padding-left: 25px;
+                padding-right: 70px;
+            }
+            
+            body[dir="rtl"] .timeline-item:nth-child(odd) {
+                padding-left: 25px;
+                padding-right: 70px;
+            }
+            
+            .timeline-item:after {
+                left: 18px !important;
+                right: auto !important;
+            }
+            
+            .timeline-item:nth-child(even):after {
+                left: 18px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content:after {
+                right: auto;
+                left: -10px;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content:after {
+                left: -10px;
+            }
+            
+            body[dir="rtl"] .timeline-item:nth-child(even) .timeline-content:after {
+                left: auto;
+                right: -10px;
+            }
+            
+            body[dir="rtl"] .timeline-item:nth-child(odd) .timeline-content:after {
+                left: auto;
+                right: -10px;
+            }
+            
+            body[dir="rtl"] .timeline:before {
+                left: 31px;
+                right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .cta-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 1.1rem;
+            }
+            
+            .intro-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .canada-intro {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .canada-flag {
+                flex: none;
+                margin-bottom: 2rem;
+            }
+            
+            .heritage-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                width: 95%;
+            }
+            
+            .heritage-item {
+                padding: 1.5rem;
+            }
+            
+            .heritage-image {
+                height: 150px;
+            }
+        }
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scrollProgress"></div>
+    <div id="loadingIndicator" style="display: none;">
+        <div class="spinner"></div>
+        Loading...
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-maple-leaf"></i>
+                <h2 data-translate="logo">Canadian Heritage</h2>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div class="theme-toggle-container">
+                    <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                    <div class="theme-dropdown" id="theme-dropdown">
+                        <button class="theme-option" data-theme="default">Default</button>
+                        <button class="theme-option" data-theme="dark-red">Dark Red</button>
+                        <button class="theme-option" data-theme="light-red">Light Red</button>
+                        <button class="theme-option" data-theme="classic-red">Classic</button>
+                    </div>
+                </div>
+                <button class="lang-toggle" id="lang-toggle">AR</button>
+                <i class="fas fa-bars menu-toggle" id="menu-toggle"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" data-translate="nav-home">Home</a></li>
+                <li><a href="#intro" data-translate="nav-about">About Canada</a></li>
+                <li class="dropdown">
+                    <a href="#heritage-types" data-translate="nav-heritage">Heritage Types <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#natural-heritage" data-translate="nav-natural">Natural Heritage</a>
+                        <a href="#architectural-heritage" data-translate="nav-architectural">Architectural Heritage</a>
+                        <a href="#art-heritage" data-translate="nav-arts">Arts</a>
+                        <a href="#indigenous-heritage" data-translate="nav-indigenous">Indigenous Heritage</a>
+                        <a href="#sports-heritage" data-translate="nav-sports">Sports Heritage</a>
+                        <a href="#science-heritage" data-translate="nav-science">Scientific Heritage</a>
+                        <a href="#linguistic-heritage" data-translate="nav-language">Language</a>
+                        <a href="#culinary-heritage" data-translate="nav-cuisine">Canadian Cuisine</a>
+                        <a href="#music-heritage" data-translate="nav-music">Musical Heritage</a>
+                    </div>
+                </li>
+                <li><a href="#timeline-section" data-translate="nav-timeline">Timeline</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="header-content animate__animated animate__fadeIn">
+            <h1 data-translate="header-title">Canadian Heritage: Treasures of the Nation</h1>
+            <p class="tagline" data-translate="header-tagline">Discover the rich cultural and natural diversity that makes Canada unique. An exploratory journey through thousands of years of history and multiple cultures coexisting in harmony.</p>
+            <div class="cta-buttons">
+                <a href="#natural-heritage" class="cta-button" data-translate="cta-explore">Explore Heritage</a>
+                <a href="#timeline-section" class="cta-button secondary" data-translate="cta-timeline">Timeline</a>
+            </div>
+        </div>
+        <a href="#intro" class="scroll-indicator"><i class="fas fa-chevron-down"></i></a>
+    </header>
+
+    <section class="container" id="intro">
+        <div class="section-title">
+            <h2 data-translate="intro-title">Canada: Land of Diversity and Beauty</h2>
+        </div>
+        <div class="canada-intro">
+            <div class="canada-flag">
+                <img src="images/flag-canada.jpeg" alt="Flag of Canada" class="heritage-image">
+                <p data-translate="flag-caption" style="color: var(--primary); font-weight: 700; margin-top: 0.5rem;">Flag of Canada</p>
+            </div>
+            <div class="canada-info">
+                <p data-translate="intro-p1">Located in the northern part of North America, Canada is the second largest country in the world by area. Its territory extends from the Atlantic Ocean in the east to the Pacific Ocean in the west, and it shares its southern border with the United States of America, which is the longest land border in the world.</p>
+                <p data-translate="intro-p2">Canada is characterized by its stunning geographical diversity, including majestic mountains like the Rockies, vast forests, freshwater lakes that form a large percentage of the world's fresh water, and tundra in the north. This geographical diversity creates unique natural environments that significantly influence Canadian culture and heritage.</p>
+                <p data-translate="intro-p3">Canada is a federal union consisting of 10 provinces and 3 territories, and is one of the most advanced and prosperous countries in the world, ranking high in human development and quality of life indicators.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="heritage-types">
+        <div class="section-title">
+            <h2 data-translate="nav-heritage">Heritage Types</h2>
+            <p class="section-subtitle" data-translate="heritage-intro-subtitle">Explore the diverse facets of Canadian heritage, from its vast natural landscapes to its rich cultural and artistic achievements.</p>
+        </div>
+    </section>
+
+    <section class="heritage-section natural-heritage" id="natural-heritage">
+        <h2 data-translate="natural-title">Canadian Natural Heritage</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="natural-subtitle">Unique natural treasures that make Canada one of the most beautiful countries in the world</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/natural-rockies.jpeg" alt="Canadian Rockies" class="heritage-image">
+                <h3 data-translate="natural-item1-title">Canadian Rockies</h3>
+                <p data-translate="natural-item1-desc">A majestic mountain range stretching through British Columbia and Alberta, featuring scenic national parks like Banff and Jasper that include glaciers, waterfalls, and emerald lakes.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/natural-boreal-forests.jpeg" alt="Boreal Forests" class="heritage-image">
+                <h3 data-translate="natural-item2-title">Boreal Forests</h3>
+                <p data-translate="natural-item2-desc">The vast boreal forest, or taiga, covers a large area of Canada and is home to a unique and vital environment for wildlife.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/natural-great-lakes.jpeg" alt="Great Lakes" class="heritage-image">
+                <h3 data-translate="natural-item3-title">Great Lakes</h3>
+                <p data-translate="natural-item3-desc">The Great Lakes form the largest group of freshwater lakes in the world, providing vast natural and economic resources, and creating a unique ecosystem.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section architectural-heritage" id="architectural-heritage">
+        <h2 data-translate="architectural-title">Canadian Architectural Heritage</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="architectural-subtitle">A unique mix of architectural styles reflecting Canada's cultural and historical diversity</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/arch-french.jpeg" alt="French Architecture" class="heritage-image">
+                <h3 data-translate="architectural-item1-title">French Architecture</h3>
+                <p data-translate="architectural-item1-desc">Quebec is characterized by traditional French architecture with stone buildings and cobblestone streets dating back to the 17th century, such as Old Quebec City.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/arch-victorian.jpeg" alt="Victorian Architecture" class="heritage-image">
+                <h3 data-translate="architectural-item2-title">Victorian Architecture</h3>
+                <p data-translate="architectural-item2-desc">Victorian architecture spread in the 19th century and is characterized by decorative details and bright colors in cities like Toronto and Vancouver.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/arch-modern.jpeg" alt="Modern Architecture" class="heritage-image">
+                <h3 data-translate="architectural-item3-title">Modern Architecture</h3>
+                <p data-translate="architectural-item3-desc">Canada has stunning modern buildings like the CN Tower in Toronto and the Vancouver Public Library that combine modernity and functionality.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section art-heritage" id="art-heritage">
+        <h2 data-translate="arts-title">Canadian Arts</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="arts-subtitle">Artistic creations expressing Canada's multicultural identity</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/art-indigenous.jpeg" alt="Indigenous Arts" class="heritage-image">
+                <h3 data-translate="arts-item1-title">Indigenous Arts</h3>
+                <p data-translate="arts-item1-desc">Indigenous art is characterized by wood carvings, totem poles, textiles, and beadwork that reflect deep spiritual symbols.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/art-group-of-seven.jpeg" alt="Group of Seven" class="heritage-image">
+                <h3 data-translate="arts-item2-title">Group of Seven</h3>
+                <p data-translate="arts-item2-desc">A group of Canadian artists who formed the national art movement in the early 20th century, focusing on depicting Canadian landscapes.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/art-canadian-theater.jpeg" alt="Canadian Theater" class="heritage-image">
+                <h3 data-translate="arts-item3-title">Canadian Theater</h3>
+                <p data-translate="arts-item3-desc">The Canadian theater scene is distinguished by its diversity and rich content, with prestigious theaters like the Stratford Theatre and the Shakespeare Festival.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section indigenous-heritage" id="indigenous-heritage">
+        <h2 data-translate="indigenous-title">Indigenous Heritage</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="indigenous-subtitle">Ancient cultures spanning thousands of years that form the true foundation of Canadian identity</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/indigenous-communities.jpeg" alt="Traditional Communities" class="heritage-image">
+                <h3 data-translate="indigenous-item1-title">Traditional Communities</h3>
+                <p data-translate="indigenous-item1-desc">Indigenous peoples have lived in Canada in harmony with nature for thousands of years, developing unique lifestyles adapted to different regions.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/indigenous-first-nations.jpeg" alt="First Nations Bands" class="heritage-image">
+                <h3 data-translate="indigenous-item2-title">First Nations Bands</h3>
+                <p data-translate="indigenous-item2-desc">The First Nations represent the original population groups in Canada, who possess rich cultural diversity and historical sovereignty.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/indigenous-history-memory.jpeg" alt="History and Memory" class="heritage-image">
+                <h3 data-translate="indigenous-item3-title">History and Memory</h3>
+                <p data-translate="indigenous-item3-desc">The emphasis on preserving history, memory, and traditional storytelling forms a fundamental part of the Indigenous heritage in Canada.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section sports-heritage" id="sports-heritage">
+        <h2 data-translate="sports-title">Canadian Sports Heritage</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="sports-subtitle">A heritage based on winter sports and ancient Indigenous games</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/sports-ice-hockey.jpeg" alt="Ice Hockey" class="heritage-image">
+                <h3 data-translate="sports-item1-title">Ice Hockey</h3>
+                <p data-translate="sports-item1-desc">Ice hockey is the official winter sport and a fundamental part of the Canadian identity. It started as a simple game and has evolved into one of the most popular sports in the country.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/sports-lacrosse.jpeg" alt="Lacrosse" class="heritage-image">
+                <h3 data-translate="sports-item2-title">Lacrosse</h3>
+                <p data-translate="sports-item2-desc">A sport that originated among Indigenous peoples in Canada, now the official summer sport. It is considered the oldest sport in North America and remains very popular.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/sports-skiing.jpeg" alt="Skiing" class="heritage-image">
+                <h3 data-translate="sports-item3-title">Skiing</h3>
+                <p data-translate="sports-item3-desc">Due to its winter climate, skiing in its various forms has developed as part of Canadian heritage. From cross-country skiing to downhill skiing, Canada has some of the best ski resorts in the world.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section science-heritage" id="science-heritage">
+        <h2 data-translate="science-title">Canadian Scientific Heritage</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="science-subtitle">Canada's contributions to science, innovation, and education</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/science-discoveries.jpeg" alt="Scientific Discoveries" class="heritage-image">
+                <h3 data-translate="science-item1-title">Scientific Discoveries</h3>
+                <p data-translate="science-item1-desc">Canadian scientists have contributed to important discoveries such as insulin, the telephone, food preservation by freezing, and many medical and technical innovations.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/science-education-system.jpeg" alt="Education System" class="heritage-image">
+                <h3 data-translate="science-item2-title">Education System</h3>
+                <p data-translate="science-item2-desc">The Canadian education system ranks among the best in the world, with prestigious universities like the University of Toronto, University of British Columbia, and McGill University.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/science-research.jpeg" alt="Scientific Research" class="heritage-image">
+                <h3 data-translate="science-item3-title">Scientific Research</h3>
+                <p data-translate="science-item3-desc">Canada has leading research centers in diverse fields such as artificial intelligence, clean energy, space sciences, and medical research.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section linguistic-heritage" id="linguistic-heritage">
+        <h2 data-translate="language-title">Canadian Linguistic Heritage</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="language-subtitle">Unique linguistic diversity reflecting Canada's multiculturalism</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/language-official.jpeg" alt="Official Languages" class="heritage-image">
+                <h3 data-translate="language-item1-title">Official Languages</h3>
+                <p data-translate="language-item1-desc">Canada is officially a bilingual country, recognizing both English and French as official languages, with communities speaking each throughout the country.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/language-indigenous.jpeg" alt="Indigenous Languages" class="heritage-image">
+                <h3 data-translate="language-item2-title">Indigenous Languages</h3>
+                <p data-translate="language-item2-desc">Canada maintains over 60 Indigenous languages, some of which are endangered. Efforts are being made to preserve these languages and teach them to new generations.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/language-immigrant.jpeg" alt="Immigrant Languages" class="heritage-image">
+                <h3 data-translate="language-item3-title">Immigrant Languages</h3>
+                <p data-translate="language-item3-desc">Due to its open immigration policy, Canada speaks hundreds of languages from around the world, making it one of the most linguistically diverse countries.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section culinary-heritage" id="culinary-heritage">
+        <h2 data-translate="culinary-title">Canadian Cuisine</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="culinary-subtitle">Diverse flavors reflecting Canada's cultural and geographical diversity</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/cuisine-dishes.jpeg" alt="Traditional Dishes" class="heritage-image">
+                <h3 data-translate="culinary-item1-title">Traditional Dishes</h3>
+                <p data-translate="culinary-item1-desc">Canadian cuisine features dishes like poutine from Quebec (fries with cheese and gravy), butter tarts, and maple syrup for which Canada is famous worldwide.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/cuisine-seafood.jpeg" alt="Seafood" class="heritage-image">
+                <h3 data-translate="culinary-item2-title">Seafood</h3>
+                <p data-translate="culinary-item2-desc">Canadian coasts are famous for diverse seafood like salmon, crab, and oysters, which form an important part of Canadian cuisine.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/cuisine-maple.jpeg" alt="Maple Products" class="heritage-image">
+                <h3 data-translate="culinary-item3-title">Maple Products</h3>
+                <p data-translate="culinary-item3-desc">Maple syrup is one of Canada's most famous agricultural products, used in many dishes and desserts, and is a symbol of Canada.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section music-heritage" id="music-heritage">
+        <h2 data-translate="music-title">Canadian Musical Heritage</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-translate="music-subtitle">A mix of genres and artists who have made their mark on the global stage</p>
+        <div class="heritage-content">
+            <div class="heritage-item">
+                <img src="images/music-classical.jpeg" alt="Classical Music" class="heritage-image">
+                <h3 data-translate="music-item1-title">Classical Music</h3>
+                <p data-translate="music-item1-desc">Canada has a rich history in classical music, with distinguished orchestras and composers who have presented unique works.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/music-folk.jpeg" alt="Folk Songs" class="heritage-image">
+                <h3 data-translate="music-item2-title">Folk Songs</h3>
+                <p data-translate="music-item2-desc">Canadian folk songs are characterized by poetic lyrics and emotional melodies that reflect the lives of early pioneers.</p>
+            </div>
+            <div class="heritage-item">
+                <img src="images/music-contemporary.jpeg" alt="Contemporary Music" class="heritage-image">
+                <h3 data-translate="music-item3-title">Contemporary Music</h3>
+                <p data-translate="music-item3-desc">Canadian artists like Celine Dion, Neil Young, Joni Mitchell, and Arcade Fire have left a global mark. Canada is also known for its independent and alternative music scenes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section" id="timeline-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="timeline-title">Canadian Heritage Timeline</h2>
+                <p class="section-subtitle" data-translate="timeline-subtitle" style="color: var(--dark);">A journey through time showcasing the most important milestones in Canada's cultural and natural history</p>
+            </div>
+            <div class="timeline" id="timeline-container">
+                </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p data-translate="footer-copyright">© 2023 Canadian Heritage: Treasures of the Nation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLang = document.documentElement.getAttribute('dir') === 'rtl' ? 'ar' : 'en';
+            
+            // Language Data Object
+            const languageData = {
+                en: {
+                    // Navigation
+                    'logo': 'Canadian Heritage',
+                    'nav-home': 'Home',
+                    'nav-about': 'About Canada',
+                    'nav-heritage': 'Heritage Types',
+                    'nav-natural': 'Natural Heritage',
+                    'nav-architectural': 'Architectural Heritage',
+                    'nav-arts': 'Arts',
+                    'nav-indigenous': 'Indigenous Heritage',
+                    'nav-sports': 'Sports Heritage',
+                    'nav-science': 'Scientific Heritage',
+                    'nav-language': 'Language',
+                    'nav-cuisine': 'Canadian Cuisine',
+                    'nav-music': 'Musical Heritage',
+                    'nav-timeline': 'Timeline',
+                    // Header
+                    'header-title': 'Canadian Heritage: Treasures of the Nation',
+                    'header-tagline': 'Discover the rich cultural and natural diversity that makes Canada unique. An exploratory journey through thousands of years of history and multiple cultures coexisting in harmony.',
+                    'cta-explore': 'Explore Heritage',
+                    'cta-timeline': 'Timeline',
+                    // Introduction
+                    'flag-caption': 'Flag of Canada',
+                    'intro-title': 'Canada: Land of Diversity and Beauty',
+                    'intro-p1': 'Located in the northern part of North America, Canada is the second largest country in the world by area. Its territory extends from the Atlantic Ocean in the east to the Pacific Ocean in the west, and it shares its southern border with the United States of America, which is the longest land border in the world.',
+                    'intro-p2': 'Canada is characterized by its stunning geographical diversity, including majestic mountains like the Rockies, vast forests, freshwater lakes that form a large percentage of the world\'s fresh water, and tundra in the north. This geographical diversity creates unique natural environments that significantly influence Canadian culture and heritage.',
+                    'intro-p3': 'Canada is a federal union consisting of 10 provinces and 3 territories, and is one of the most advanced and prosperous countries in the world, ranking high in human development and quality of life indicators.',
+                    // Heritage Types Intro
+                    'heritage-intro-subtitle': 'Explore the diverse facets of Canadian heritage, from its vast natural landscapes to its rich cultural and artistic achievements.',
+
+                    // Natural Heritage
+                    'natural-title': 'Canadian Natural Heritage',
+                    'natural-subtitle': 'Unique natural treasures that make Canada one of the most beautiful countries in the world',
+                    'natural-item1-title': 'Canadian Rockies',
+                    'natural-item1-desc': 'A majestic mountain range stretching through British Columbia and Alberta, featuring scenic national parks like Banff and Jasper that include glaciers, waterfalls, and emerald lakes.',
+                    'natural-item2-title': 'Boreal Forests',
+                    'natural-item2-desc': 'The vast boreal forest, or taiga, covers a large area of Canada and is home to a unique and vital environment for wildlife.',
+                    'natural-item3-title': 'Great Lakes',
+                    'natural-item3-desc': 'The Great Lakes form the largest group of freshwater lakes in the world, providing vast natural and economic resources, and creating a unique ecosystem.',
+
+                    // Architectural Heritage
+                    'architectural-title': 'Canadian Architectural Heritage',
+                    'architectural-subtitle': 'A unique mix of architectural styles reflecting Canada\'s cultural and historical diversity',
+                    'architectural-item1-title': 'French Architecture',
+                    'architectural-item1-desc': 'Quebec is characterized by traditional French architecture with stone buildings and cobblestone streets dating back to the 17th century, such as Old Quebec City.',
+                    'architectural-item2-title': 'Victorian Architecture',
+                    'architectural-item2-desc': 'Victorian architecture spread in the 19th century and is characterized by decorative details and bright colors in cities like Toronto and Vancouver.',
+                    'architectural-item3-title': 'Modern Architecture',
+                    'architectural-item3-desc': 'Canada has stunning modern buildings like the CN Tower in Toronto and the Vancouver Public Library that combine modernity and functionality.',
+
+                    // Arts Heritage
+                    'arts-title': 'Canadian Arts',
+                    'arts-subtitle': 'Artistic creations expressing Canada\'s multicultural identity',
+                    'arts-item1-title': 'Indigenous Arts',
+                    'arts-item1-desc': 'Indigenous art is characterized by wood carvings, totem poles, textiles, and beadwork that reflect deep spiritual symbols.',
+                    'arts-item2-title': 'Group of Seven',
+                    'arts-item2-desc': 'A group of Canadian artists who formed the national art movement in the early 20th century, focusing on depicting Canadian landscapes.',
+                    'arts-item3-title': 'Canadian Theater',
+                    'arts-item3-desc': 'The Canadian theater scene is distinguished by its diversity and rich content, with prestigious theaters like the Stratford Theatre and the Shakespeare Festival.',
+
+                    // Indigenous Heritage
+                    'indigenous-title': 'Indigenous Heritage',
+                    'indigenous-subtitle': 'Ancient cultures spanning thousands of years that form the true foundation of Canadian identity',
+                    'indigenous-item1-title': 'Traditional Communities',
+                    'indigenous-item1-desc': 'Indigenous peoples have lived in Canada in harmony with nature for thousands of years, developing unique lifestyles adapted to different regions.',
+                    'indigenous-item2-title': 'First Nations Bands',
+                    'indigenous-item2-desc': 'The First Nations represent the original population groups in Canada, who possess rich cultural diversity and historical sovereignty.',
+                    'indigenous-item3-title': 'History and Memory',
+                    'indigenous-item3-desc': 'The emphasis on preserving history, memory, and traditional storytelling forms a fundamental part of the Indigenous heritage in Canada.',
+
+                    // Sports Heritage
+                    'sports-title': 'Canadian Sports Heritage',
+                    'sports-subtitle': 'A heritage based on winter sports and ancient Indigenous games',
+                    'sports-item1-title': 'Ice Hockey',
+                    'sports-item1-desc': 'Ice hockey is the official winter sport and a fundamental part of the Canadian identity. It started as a simple game and has evolved into one of the most popular sports in the country.',
+                    'sports-item2-title': 'Lacrosse',
+                    'sports-item2-desc': 'A sport that originated among Indigenous peoples in Canada, now the official summer sport. It is considered the oldest sport in North America and remains very popular.',
+                    'sports-item3-title': 'Skiing',
+                    'sports-item3-desc': 'Due to its winter climate, skiing in its various forms has developed as part of Canadian heritage. From cross-country skiing to downhill skiing, Canada has some of the best ski resorts in the world.',
+
+                    // Science Heritage
+                    'science-title': 'Canadian Scientific Heritage',
+                    'science-subtitle': 'Canada\'s contributions to science, innovation, and education',
+                    'science-item1-title': 'Scientific Discoveries',
+                    'science-item1-desc': 'Canadian scientists have contributed to important discoveries such as insulin, the telephone, food preservation by freezing, and many medical and technical innovations.',
+                    'science-item2-title': 'Education System',
+                    'science-item2-desc': 'The Canadian education system ranks among the best in the world, with prestigious universities like the University of Toronto, University of British Columbia, and McGill University.',
+                    'science-item3-title': 'Scientific Research',
+                    'science-item3-desc': 'Canada has leading research centers in diverse fields such as artificial intelligence, clean energy, space sciences, and medical research.',
+
+                    // Language Heritage
+                    'language-title': 'Canadian Linguistic Heritage',
+                    'language-subtitle': 'Unique linguistic diversity reflecting Canada\'s multiculturalism',
+                    'language-item1-title': 'Official Languages',
+                    'language-item1-desc': 'Canada is officially a bilingual country, recognizing both English and French as official languages, with communities speaking each throughout the country.',
+                    'language-item2-title': 'Indigenous Languages',
+                    'language-item2-desc': 'Canada maintains over 60 Indigenous languages, some of which are endangered. Efforts are being made to preserve these languages and teach them to new generations.',
+                    'language-item3-title': 'Immigrant Languages',
+                    'language-item3-desc': 'Due to its open immigration policy, Canada speaks hundreds of languages from around the world, making it one of the most linguistically diverse countries.',
+
+                    // Culinary Heritage
+                    'culinary-title': 'Canadian Cuisine',
+                    'culinary-subtitle': 'Diverse flavors reflecting Canada\'s cultural and geographical diversity',
+                    'culinary-item1-title': 'Traditional Dishes',
+                    'culinary-item1-desc': 'Canadian cuisine features dishes like poutine from Quebec (fries with cheese and gravy), butter tarts, and maple syrup for which Canada is famous worldwide.',
+                    'culinary-item2-title': 'Seafood',
+                    'culinary-item2-desc': 'Canadian coasts are famous for diverse seafood like salmon, crab, and oysters, which form an important part of Canadian cuisine.',
+                    'culinary-item3-title': 'Maple Products',
+                    'culinary-item3-desc': 'Maple syrup is one of Canada\'s most famous agricultural products, used in many dishes and desserts, and is a symbol of Canada.',
+
+                    // Musical Heritage
+                    'music-title': 'Canadian Musical Heritage',
+                    'music-subtitle': 'A mix of genres and artists who have made their mark on the global stage',
+                    'music-item1-title': 'Classical Music',
+                    'music-item1-desc': 'Canada has a rich history in classical music, with distinguished orchestras and composers who have presented unique works.',
+                    'music-item2-title': 'Folk Songs',
+                    'music-item2-desc': 'Canadian folk songs are characterized by poetic lyrics and emotional melodies that reflect the lives of early pioneers.',
+                    'music-item3-title': 'Contemporary Music',
+                    'music-item3-desc': 'Canadian artists like Celine Dion, Neil Young, Joni Mitchell, and Arcade Fire have left a global mark. Canada is also known for its independent and alternative music scenes.',
+
+                    // Timeline
+                    'timeline-title': 'Canadian Heritage Timeline',
+                    'timeline-subtitle': 'A journey through time showcasing the most important milestones in Canada\'s cultural and natural history',
+
+                    // Footer
+                    'footer-copyright': '© 2023 Canadian Heritage: Treasures of the Nation. All rights reserved.'
+                },
+                ar: {
+                    // Navigation
+                    'logo': 'التراث الكندي',
+                    'nav-home': 'الرئيسية',
+                    'nav-about': 'عن كندا',
+                    'nav-heritage': 'أنواع التراث',
+                    'nav-natural': 'التراث الطبيعي',
+                    'nav-architectural': 'التراث المعماري',
+                    'nav-arts': 'الفنون',
+                    'nav-indigenous': 'التراث الأصلي',
+                    'nav-sports': 'التراث الرياضي',
+                    'nav-science': 'التراث العلمي',
+                    'nav-language': 'اللغة',
+                    'nav-cuisine': 'المطبخ الكندي',
+                    'nav-music': 'التراث الموسيقي',
+                    'nav-timeline': 'الجدول الزمني',
+                    // Header
+                    'header-title': 'التراث الكندي: كنوز الأمة',
+                    'header-tagline': 'اكتشف التنوع الثقافي والطبيعي الغني الذي يجعل كندا فريدة من نوعها. رحلة استكشافية عبر آلاف السنين من التاريخ وثقافات متعددة تتعايش في وئام.',
+                    'cta-explore': 'استكشف التراث',
+                    'cta-timeline': 'الجدول الزمني',
+                    // Introduction
+                    'flag-caption': 'علم كندا',
+                    'intro-title': 'كندا: أرض التنوع والجمال',
+                    'intro-p1': 'تقع كندا في الجزء الشمالي من أمريكا الشمالية، وهي ثاني أكبر دولة في العالم من حيث المساحة. تمتد أراضيها من المحيط الأطلسي في الشرق إلى المحيط الهادئ في الغرب، وتشترك في حدودها الجنوبية مع الولايات المتحدة الأمريكية، وهي أطول حدود برية في العالم.',
+                    'intro-p2': 'تتميز كندا بتنوعها الجغرافي المذهل، بما في ذلك الجبال الشامخة مثل جبال روكي، والغابات الشاسعة، والبحيرات المياه العذبة التي تشكل نسبة كبيرة من المياه العذبة في العالم، والتندرا في الشمال. يخلق هذا التنوع الجغرافي بيئات طبيعية فريدة تؤثر بشكل كبير على الثقافة والتراث الكندي.',
+                    'intro-p3': 'كندا هي اتحاد فيدرالي يتكون من 10 مقاطعات و 3 أقاليم، وتعتبر من أكثر الدول تقدماً وازدهاراً في العالم، وتحتل مراتب متقدمة في مؤشرات التنمية البشرية وجودة الحياة.',
+                    // Heritage Types Intro
+                    'heritage-intro-subtitle': 'استكشف الأوجه المتنوعة للتراث الكندي، من مناظره الطبيعية الشاسعة إلى إنجازاته الثقافية والفنية الغنية.',
+
+                    // Natural Heritage
+                    'natural-title': 'التراث الطبيعي الكندي',
+                    'natural-subtitle': 'كنوز طبيعية فريدة تجعل من كندا واحدة من أجمل دول العالم',
+                    'natural-item1-title': 'جبال روكي الكندية',
+                    'natural-item1-desc': 'سلسلة جبلية مهيبة تمتد عبر كولومبيا البريطانية وألبرتا، وتضم منتزهات وطنية خلابة مثل بانف وجاسبر التي تحتوي على الأنهار الجليدية والشلالات والبحيرات الزمردية.',
+                    'natural-item2-title': 'الغابات الشمالية (بوريال)',
+                    'natural-item2-desc': 'تغطي الغابة الشمالية الشاسعة، أو التايغا، مساحة كبيرة من كندا وتعد موطناً لبيئة فريدة وحيوية للحياة البرية.',
+                    'natural-item3-title': 'البحيرات العظمى',
+                    'natural-item3-desc': 'تشكل البحيرات العظمى أكبر مجموعة من بحيرات المياه العذبة في العالم، مما يوفر موارد طبيعية واقتصادية هائلة، ويخلق نظاماً بيئياً فريداً.',
+
+                    // Architectural Heritage
+                    'architectural-title': 'التراث المعماري الكندي',
+                    'architectural-subtitle': 'مزيج فريد من الأساليب المعمارية يعكس التنوع الثقافي والتاريخي لكندا',
+                    'architectural-item1-title': 'العمارة الفرنسية',
+                    'architectural-item1-desc': 'تتميز كيبيك بالعمارة الفرنسية التقليدية مع المباني الحجرية والشوارع المرصوفة بالحصى التي تعود إلى القرن السابع عشر، مثل مدينة كيبيك القديمة.',
+                    'architectural-item2-title': 'العمارة الفيكتورية',
+                    'architectural-item2-desc': 'انتشرت العمارة الفيكتورية في القرن التاسع عشر وتتميز بالتفاصيل الزخرفية والألوان الزاهية في مدن مثل تورونتو وفانكوفر.',
+                    'architectural-item3-title': 'العمارة الحديثة',
+                    'architectural-item3-desc': 'تمتلك كندا مبانٍ حديثة مذهلة مثل برج سي إن في تورونتو ومكتبة فانكوفر العامة التي تجمع بين الحداثة والوظائفية.',
+
+                    // Arts Heritage
+                    'arts-title': 'الفنون الكندية',
+                    'arts-subtitle': 'إبداعات فنية تعبر عن الهوية متعددة الثقافات في كندا',
+                    'arts-item1-title': 'فنون السكان الأصليين',
+                    'arts-item1-desc': 'يتميز الفن الأصلي بالنحت على الخشب، والأعمدة الطوطمية، والمنسوجات، وأعمال الخرز التي تعكس رموزاً روحية عميقة.',
+                    'arts-item2-title': 'مجموعة السبعة',
+                    'arts-item2-desc': 'مجموعة من الفنانين الكنديين شكلوا الحركة الفنية الوطنية في أوائل القرن العشرين، مع التركيز على تصوير المناظر الطبيعية الكندية.',
+                    'arts-item3-title': 'المسرح الكندي',
+                    'arts-item3-desc': 'يتميز المشهد المسرحي الكندي بتنوعه ومحتواه الغني، مع مسارح مرموقة مثل مسرح ستراتفورد ومهرجان شكسبير.',
+
+                    // Indigenous Heritage
+                    'indigenous-title': 'التراث الأصلي',
+                    'indigenous-subtitle': 'ثقافات قديمة تمتد لآلاف السنين تشكل الأساس الحقيقي للهوية الكندية',
+                    'indigenous-item1-title': 'المجتمعات التقليدية',
+                    'indigenous-item1-desc': 'عاش السكان الأصليون في كندا بانسجام مع الطبيعة لآلاف السنين، وطوروا أنماط حياة فريدة تتكيف مع المناطق المختلفة.',
+                    'indigenous-item2-title': 'عصابات الأمم الأولى',
+                    'indigenous-item2-desc': 'تمثل الأمم الأولى مجموعات السكان الأصلية الرئيسية في كندا، التي تتمتع بتنوع ثقافي غني وسيادة تاريخية.',
+                    'indigenous-item3-title': 'التاريخ والذاكرة',
+                    'indigenous-item3-desc': 'يشكل التركيز على الحفاظ على التاريخ والذاكرة ورواية القصص التقليدية جزءاً أساسياً من التراث الأصلي في كندا.',
+
+                    // Sports Heritage
+                    'sports-title': 'التراث الرياضي الكندي',
+                    'sports-subtitle': 'تراث قائم على الرياضات الشتوية والألعاب الأصلية القديمة',
+                    'sports-item1-title': 'هوكي الجليد',
+                    'sports-item1-desc': 'هوكي الجليد هو الرياضة الشتوية الرسمية وجزء أساسي من الهوية الكندية. بدأت كلعبة بسيطة وتطورت لتصبح واحدة من أكثر الرياضات شعبية في البلاد.',
+                    'sports-item2-title': 'اللاكروس',
+                    'sports-item2-desc': 'رياضة نشأت بين السكان الأصليين في كندا، وهي الآن الرياضة الصيفية الرسمية. تعتبر أقدم رياضة في أمريكا الشمالية ولا تزال تحظى بشعبية كبيرة.',
+                    'sports-item3-title': 'التزلج',
+                    'sports-item3-desc': 'بسبب مناخها الشتوي، تطور التزلج بأشكاله المختلفة كجزء من التراث الكندي. من التزلج الريفي إلى التزلج على المنحدرات، تمتلك كندا بعض من أفضل منتجعات التزلج في العالم.',
+
+                    // Science Heritage
+                    'science-title': 'التراث العلمي الكندي',
+                    'science-subtitle': 'مساهمات كندا في العلوم والابتكار والتعليم',
+                    'science-item1-title': 'الاكتشافات العلمية',
+                    'science-item1-desc': 'ساهم العلماء الكنديون في اكتشافات مهمة مثل الأنسولين، والهاتف، وحفظ الطعام بالتجميد، والعديد من الابتكارات الطبية والتقنية.',
+                    'science-item2-title': 'نظام التعليم',
+                    'science-item2-desc': 'يصنف نظام التعليم الكندي من بين الأفضل في العالم، مع جامعات مرموقة مثل جامعة تورونتو، وجامعة كولومبيا البريطانية، وجامعة مكغيل.',
+                    'science-item3-title': 'البحث العلمي',
+                    'science-item3-desc': 'تمتلك كندا مراكز أبحاث رائدة في مجالات متنوعة مثل الذكاء الاصطناعي، والطاقة النظيفة، وعلوم الفضاء، والبحوث الطبية.',
+
+                    // Language Heritage
+                    'language-title': 'التراث اللغوي الكندي',
+                    'language-subtitle': 'تنوع لغوي فريد يعكس التعددية الثقافية في كندا',
+                    'language-item1-title': 'اللغات الرسمية',
+                    'language-item1-desc': 'كندا بلد ثنائي اللغة رسمياً، حيث تعترف بكل من الإنجليزية والفرنسية كلغتين رسميتين، مع مجتمعات تتحدث كل منهما في جميع أنحاء البلاد.',
+                    'language-item2-title': 'لغات السكان الأصليين',
+                    'language-item2-desc': 'تحافظ كندا على أكثر من 60 لغة من لغات السكان الأصليين، بعضها مهدد بالانقراض. تبذل جهود للحفاظ على هذه اللغات وتعليمها للأجيال الجديدة.',
+                    'language-item3-title': 'لغات المهاجرين',
+                    'language-item3-desc': 'بسبب سياسة الهجرة المفتوحة، تتحدث كندا مئات اللغات من جميع أنحاء العالم، مما يجعلها واحدة من أكثر الدول تنوعاً لغوياً.',
+
+                    // Culinary Heritage
+                    'culinary-title': 'المطبخ الكندي',
+                    'culinary-subtitle': 'نكهات متنوعة تعكس التنوع الثقافي والجغرافي لكندا',
+                    'culinary-item1-title': 'الأطباق التقليدية',
+                    'culinary-item1-desc': 'يتميز المطبخ الكندي بأطباق مثل البوتين من كيبيك (البطاطا المقلية مع الجبن والمرق)، وفطائر الزبدة، وشراب القيقب الذي تشتهر به كندا عالمياً.',
+                    'culinary-item2-title': 'المأكولات البحرية',
+                    'culinary-item2-desc': 'تشتهر السواحل الكندية بمأكولات بحرية متنوعة مثل السلمون وسرطان البحر والمحار، والتي تشكل جزءاً هاماً من المطبخ الكندي.',
+                    'culinary-item3-title': 'منتجات القيقب',
+                    'culinary-item3-desc': 'يعد شراب القيقب من أشهر المنتجات الزراعية الكندية، ويستخدم في العديد من الأطباق والحلويات، ويعتبر رمزاً لكندا.',
+
+                    // Musical Heritage
+                    'music-title': 'التراث الموسيقي الكندي',
+                    'music-subtitle': 'مزيج من الأنواع والفنانين الذين تركوا بصماتهم على الساحة العالمية',
+                    'music-item1-title': 'الموسيقى الكلاسيكية',
+                    'music-item1-desc': 'تمتلك كندا تاريخاً غنياً في الموسيقى الكلاسيكية، مع فرق أوركسترا وملحنين متميزين قدموا أعمالاً فريدة.',
+                    'music-item2-title': 'الأغاني الشعبية (الفولك)',
+                    'music-item2-desc': 'تتميز الأغاني الشعبية الكندية بكلمات شعرية وألحان عاطفية تعكس حياة الرواد الأوائل.',
+                    'music-item3-title': 'الموسيقى المعاصرة',
+                    'music-item3-desc': 'ترك فنانون كنديون مثل سيلين ديون ونيل يونغ وجوني ميتشل وآركيد فاير بصمة عالمية. تشتهر كندا أيضاً بمشاهدها الموسيقية المستقلة والبديلة.',
+
+                    // Timeline
+                    'timeline-title': 'الجدول الزمني للتراث الكندي',
+                    'timeline-subtitle': 'رحلة عبر الزمن تعرض أهم المحطات في التاريخ الثقافي والطبيعي لكندا',
+
+                    // Footer
+                    'footer-copyright': '© 2023 التراث الكندي: كنوز الأمة. جميع الحقوق محفوظة.'
+                }
+            };
+            
+            // Expanded Timeline Data
+            const timelineData = {
+                en: [
+                    { year: 'Prehistory - 1500', content: 'Settlement of Indigenous peoples in Canada for thousands of years, and the development of their distinctive cultures like the Inuit, Haida, Cree, and Ojibwe. Flourishing of arts, crafts, and trade between tribes.' },
+                    { year: '16th Century', content: 'Arrival of European explorers led by John Cabot and Jacques Cartier. Beginning of French settlement and establishment of New France. Beginning of the fur trade that shaped the early economy.' },
+                    { year: '17th Century', content: 'Foundation of Quebec City (1608) and Montreal (1642). Development of New France societies and flourishing fur trade. Arrival of Catholic missionaries and building of religious missions.' },
+                    { year: '18th Century', content: 'French-British conflict for control of Canada. Treaty of Paris (1763) that transfers Canada to British control. Beginning of British immigration and establishment of new colonies.' },
+                    { year: '1867', content: 'Foundation of the Canadian Confederation through the British North America Act. Union of Ontario, Quebec, Nova Scotia and New Brunswick. Beginning of building Canadian national identity.' },
+                    { year: 'Late 19th Century', content: 'Westward expansion and construction of the Canadian Pacific Railway. Increased immigration from Europe. Establishment of new provinces like Manitoba and British Columbia.' },
+                    { year: '20th Century', content: 'Successive waves of immigration from around the world. Development of multiculturalism policy. Participation in both World Wars and development of industry and economy.' },
+                    { year: '1960-1980', content: 'Quiet Revolution in Quebec and the development of Quebec nationalism. Adoption of the current Canadian flag (1965). Hosting Expo 67 in Montreal and the Olympics in Montreal (1976).' },
+                    { year: '1982 - Present', content: 'Adoption of the Constitution Act and the Charter of Rights and Freedoms. Modernization of the economy and focus on technology and innovation. Increased awareness of environmental conservation. Global flourishing of Canadian arts and culture.' }
+                ],
+                ar: [
+                    { year: 'ما قبل التاريخ - 1500', content: 'استيطان الشعوب الأصلية في كندا لآلاف السنين، وتطور ثقافاتهم المميزة مثل الإنويت والهايدا والكري والأوجيبوا. ازدهار الفنون والحرف والتجارة بين القبائل.' },
+                    { year: 'القرن السادس عشر', content: 'وصول المستكشفين الأوروبيين بقيادة جون كابوت وجاك كارتييه. بداية الاستيطان الفرنسي وإنشاء فرنسا الجديدة. بداية تجارة الفراء التي شكلت الاقتصاد المبكر.' },
+                    { year: 'القرن السابع عشر', content: 'تأسيس مدينة كيبيك (1608) ومونتريال (1642). تطور مجتمعات فرنسا الجديدة وازدهار تجارة الفراء. وصول المبشرين الكاثوليك وبناء البعثات الدينية.' },
+                    { year: 'القرن الثامن عشر', content: 'الصراع الفرنسي البريطاني للسيطرة على كندا. معاهدة باريس (1763) التي تنقل كندا إلى السيطرة البريطانية. بداية الهجرة البريطانية وإنشاء مستعمرات جديدة.' },
+                    { year: '1867', content: 'تأسيس الكونفدرالية الكندية من خلال قانون أمريكا الشمالية البريطانية. اتحاد أونتاريو وكيبيك ونوفا سكوتيا ونيو برونزويك. بداية بناء الهوية الوطنية الكندية.' },
+                    { year: 'أواخر القرن التاسع عشر', content: 'التوسع غرباً وبناء سكة حديد المحيط الهادئ الكندية. زيادة الهجرة من أوروبا. إنشاء مقاطعات جديدة مثل مانيتوبا وكولومبيا البريطانية.' },
+                    { year: 'القرن العشرين', content: 'موجات متتالية من الهجرة من جميع أنحاء العالم. تطوير سياسة التعددية الثقافية. المشاركة في الحربين العالميتين وتطور الصناعة والاقتصاد.' },
+                    { year: '1960-1980', content: 'الثورة الهادئة في كيبيك وتطور القومية الكيبيكية. اعتماد العلم الكندي الحالي (1965). استضافة إكسبو 67 في مونتريال والأولمبياد في مونتريال (1976).' },
+                    { year: '1982 - الوقت الحاضر', content: 'اعتماد القانون الدستوري وميثاق الحقوق والحريات. تحديث الاقتصاد والتركيز على التكنولوجيا والابتكار. زيادة الوعي بالحفاظ على البيئة. ازدهار الفنون والثقافة الكندية عالمياً.' }
+                ]
+            };
+
+            // Update text content based on selected language
+            function updateLanguage(lang) {
+                const data = languageData[lang];
+                document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+                document.getElementById('lang-toggle').textContent = lang.toUpperCase();
+
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (data[key]) {
+                        // Special handling for the header title to keep gradient effect
+                        if (key === 'header-title') {
+                            // Only update text content, CSS will handle the styling
+                            const textNode = element.childNodes[0];
+                            if (textNode && textNode.nodeType === 3) {
+                                textNode.nodeValue = data[key];
+                            } else {
+                                element.textContent = data[key];
+                            }
+                        } else {
+                            element.textContent = data[key];
+                        }
+                    }
+                });
+                
+                // Update specific image alts
+                document.querySelectorAll('.heritage-image').forEach(img => {
+                    const altKey = img.getAttribute('alt');
+                    const newAlt = data[`${altKey.toLowerCase().replace(/ /g, '-')}-caption`] || altKey;
+                    img.setAttribute('alt', newAlt);
+                });
+
+                // Rebuild timeline with new language
+                rebuildTimeline(lang);
+            }
+
+            // Function to rebuild timeline
+            function rebuildTimeline(lang) {
+                const timelineContainer = document.getElementById('timeline-container');
+                timelineContainer.innerHTML = '';
+                timelineData[lang].forEach((item, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = `timeline-item ${index % 2 === 0 ? 'odd' : 'even'}`;
+                    timelineItem.innerHTML = `
+                        <div class="timeline-content">
+                            <span class="year">${item.year}</span>
+                            <p>${item.content}</p>
+                        </div>
+                    `;
+                    timelineContainer.appendChild(timelineItem);
+                });
+
+                // Re-activate timeline items
+                setTimeout(() => {
+                    const timelineItems = document.querySelectorAll('.timeline-item');
+                    timelineItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, index * 200);
+                    });
+                }, 500);
+            }
+
+            // Language toggle event
+            const langToggle = document.getElementById('lang-toggle');
+            langToggle.addEventListener('click', () => {
+                const newLang = document.documentElement.getAttribute('dir') === 'rtl' ? 'en' : 'ar';
+                updateLanguage(newLang);
+            });
+
+            // Create initial timeline
+            updateLanguage(currentLang);
+
+
+            // Navigation Scroll Effect
+            const navbar = document.getElementById('navbar');
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                    backToTopButton.classList.add('visible');
+                } else {
+                    navbar.classList.remove('scrolled');
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+
+            // Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Scroll to Top
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Smooth Scroll for Nav Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    navLinks.classList.remove('active'); // Close mobile menu after clicking a link
+                });
+            });
+
+            // Theme Toggle Logic
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeDropdown = document.getElementById('theme-dropdown');
+            const themeOptions = document.querySelectorAll('.theme-option');
+
+            themeToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                themeDropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', () => {
+                themeDropdown.classList.remove('active');
+            });
+            
+            // Apply Selected Theme
+            themeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const theme = option.getAttribute('data-theme');
+                    applyTheme(theme);
+                    themeDropdown.classList.remove('active');
+                });
+            });
+            
+            // Apply Saved Theme
+            const savedTheme = localStorage.getItem('siteTheme') || 'default';
+            applyTheme(savedTheme);
+            
+            // Theme Application Function
+            function applyTheme(theme) {
+                if (theme === 'default') {
+                    document.documentElement.removeAttribute('data-theme');
+                } else {
+                    document.documentElement.setAttribute('data-theme', theme);
+                }
+                localStorage.setItem('siteTheme', theme);
+            }
+
+            // Add Scroll Progress Indicator
+            window.addEventListener('scroll', () => {
+                const winHeight = window.innerHeight;
+                const docHeight = document.documentElement.scrollHeight - winHeight;
+                const scrolled = (window.scrollY / docHeight) * 100;
+                document.getElementById('scrollProgress').style.width = `${scrolled}%`;
+            });
+        });
+    </script>
+</body>
+</html>
